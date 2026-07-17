@@ -16,11 +16,7 @@ pub fn server_details() -> InitializeResult {
             description: Some(
                 "A fast and efficient tools for managing filesystem operations.".to_string(),
             ),
-            icons: vec![mcp_icon!(
-                src = "https://rust-mcp-stack.github.io/rust-mcp-filesystem/_media/rust-mcp-filesystem-128.png",
-                mime_type = "image/png",
-                sizes = "128x128"
-            )],
+            icons: vec![],
             website_url: Some("https://rust-mcp-stack.github.io/rust-mcp-filesystem".into()),
         },
         capabilities: ServerCapabilities {
