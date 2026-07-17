@@ -14,11 +14,6 @@ use crate::fs_service::FileSystemService;
     idempotent_hint = false,
     open_world_hint = false,
     read_only_hint = false,
-    icons = [
-        (src = "https://rust-mcp-stack.github.io/rust-mcp-filesystem/_media/tool_icons/zip_files.png",
-        mime_type = "image/png",
-        sizes = ["128x128"])
-    ],
 )]
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, JsonSchema)]
 pub struct ZipFiles {
@@ -51,11 +46,6 @@ impl ZipFiles {
 It takes a source ZIP file path and a target extraction directory.
 The tool decompresses all files and directories stored in the ZIP, recreating their structure in the target location.
 Both the source ZIP file and the target directory should reside within allowed directories.",
-icons = [
-    (src = "https://rust-mcp-stack.github.io/rust-mcp-filesystem/_media/tool_icons/unzip_file.png",
-    mime_type = "image/png",
-    sizes = ["128x128"])
-],
 )]
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, JsonSchema)]
 pub struct UnzipFile {
@@ -87,11 +77,6 @@ impl UnzipFile {
     description = "Creates a ZIP archive by compressing a directory , including files and subdirectories matching a specified glob pattern.
 It takes a path to the folder and a glob pattern to identify files to compress and a target path for the resulting ZIP file.
 Both the source directory and the target ZIP file should reside within allowed directories.",
-icons = [
-    (src = "https://rust-mcp-stack.github.io/rust-mcp-filesystem/_media/tool_icons/zip_directory.png",
-    mime_type = "image/png",
-    sizes = ["128x128"])
-],
 )]
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, JsonSchema)]
 pub struct ZipDirectory {

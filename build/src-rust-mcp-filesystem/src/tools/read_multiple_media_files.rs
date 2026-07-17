@@ -15,11 +15,6 @@ use rust_mcp_sdk::schema::{CallToolResult, schema_utils::CallToolError};
     idempotent_hint = false,
     open_world_hint = false,
     read_only_hint = true,
-    icons = [
-        (src = "https://rust-mcp-stack.github.io/rust-mcp-filesystem/_media/tool_icons/read_multiple_media_files.png",
-        mime_type = "image/png",
-        sizes = ["128x128"])
-    ],
 )]
 #[derive(::serde::Deserialize, ::serde::Serialize, Clone, Debug, JsonSchema)]
 pub struct ReadMultipleMediaFiles {

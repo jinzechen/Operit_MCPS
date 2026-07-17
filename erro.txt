@@ -1,0 +1,1274 @@
+读取到配置 env 键: (none)
+START
+运行时错误: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      0,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      1,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      2,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      3,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      4,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      5,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      6,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      7,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      8,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      9,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      10,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      11,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      12,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      13,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      14,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      15,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      16,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      17,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      18,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      19,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      20,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      21,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      22,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      23,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  }
+]
+运行时输出:
+Spawn helper process started.
+[rust_mcp_filesystem] Helper connected successfully.
+Secure MCP Filesystem Server running in "readonly" mode without "MCP Roots" support.
+No tools are disabled 👍
+Allowed directories:
+/
+[rust_mcp_filesystem] Helper connection failed: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      0,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      1,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      2,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      3,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      4,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      5,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      6,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      7,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      8,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      9,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      10,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      11,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      12,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      13,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      14,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      15,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      16,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      17,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, recSpawn helper process started.
+[rust_mcp_filesystem] Helper connected successfully.
+Secure MCP Filesystem Server running in "readonly" mode without "MCP Roots" support.
+No tools are disabled 👍
+Allowed directories:
+/
+[rust_mcp_filesystem] Helper connection failed: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      0,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      1,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      2,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      3,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      4,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      5,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      6,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      7,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      8,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      9,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      10,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      11,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      12,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      13,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      14,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      15,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      16,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      17,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, recSpawn helper process started.
+[rust_mcp_filesystem] Helper connected successfully.
+Secure MCP Filesystem Server running in "readonly" mode without "MCP Roots" support.
+No tools are disabled 👍
+Allowed directories:
+/
+[rust_mcp_filesystem] Helper connection failed: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      0,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      1,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      2,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      3,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      4,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      5,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      6,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      7,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      8,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      9,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      10,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      11,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      12,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      13,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      14,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      15,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      16,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      17,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, recSpawn helper process started.
+[rust_mcp_filesystem] Helper connected successfully.
+Secure MCP Filesystem Server running in "readonly" mode without "MCP Roots" support.
+No tools are disabled 👍
+Allowed directories:
+/
+[rust_mcp_filesystem] Helper connection failed: [
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      0,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      1,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      2,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      3,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      4,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      5,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      6,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      7,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      8,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      9,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      10,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      11,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      12,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      13,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      14,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      15,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      16,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, received array"
+  },
+  {
+    "code": "invalid_type",
+    "expected": "string",
+    "received": "array",
+    "path": [
+      "tools",
+      17,
+      "icons",
+      0,
+      "sizes"
+    ],
+    "message": "Expected string, rec
