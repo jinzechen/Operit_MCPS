@@ -37,14 +37,12 @@ jobs:
       - name: Clone agentic-sdk (for agentic_vision)
         if: matrix.plugin.patch_deps == 'true'
         run: |
-          git clone --depth 1 https://github.com/agentralabs/agentic-sdk build/agentic-sdk
-          # Move the src dir alongside agentic-sdk for path dep resolution
-          cd build
-          # agentic-sdk expects ../agentic-sdk relative to agentic-vision workspace
-          # Our layout: build/src-agentic_vision  and  build/agentic-sdk
-          # So from src-agentic_vision, ../agentic-sdk = build/agentic-sdk ✓
-          echo "Layout:"
-          ls -d */ | head -10
+          cd build/${{ matrix.plugin.src }}
+          # cross only mounts the project directory, so agentic-sdk must be inside it
+          git clone --depth 1 https://github.com/agentralabs/agentic-sdk crates/agentic-sdk
+          # Update workspace Cargo.toml to point to the in-project clone
+          sed -i 's|path = "../agentic-sdk"|path = "crates/agentic-sdk"|' Cargo.toml
+          cat Cargo.toml | grep agentic
 
       - name: Build ${{ matrix.plugin.name }}
         run: |
