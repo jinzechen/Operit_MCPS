@@ -1,9 +1,10 @@
 [build]
 pre-build = [
-    "apt-get update && apt-get install -y libssl-dev pkg-config perl make || true"
+    "apt-get update && apt-get install -y wget tar gcc make perl",
+    "cd /tmp && wget -q https://www.openssl.org/source/openssl-3.0.15.tar.gz && tar xzf openssl-3.0.15.tar.gz",
+    "cd /tmp/openssl-3.0.15 && ./Configure linux-aarch64 no-shared --prefix=/usr/local/musl-aarch64 --openssldir=/usr/local/musl-aarch64/ssl && make -j$(nproc) && make install_sw",
+    "echo 'openssl cross-compiled'"
 ]
 
 [target.aarch64-unknown-linux-musl]
-pre-build = [
-    "apt-get update && apt-get install -y libssl-dev pkg-config perl make || true"
-]
+env = { "OPENSSL_DIR" = "/usr/local/musl-aarch64", "OPENSSL_STATIC" = "1" }
