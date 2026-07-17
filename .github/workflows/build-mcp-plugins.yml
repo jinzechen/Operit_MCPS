@@ -17,7 +17,7 @@ jobs:
           - { name: obscura,             src: src-obscura,             bin: obscura,             args: '' }
           - { name: agentic_vision,      src: src-agentic_vision,      bin: agentic-vision-mcp,  args: '--bin agentic-vision-mcp', patch_deps: 'true' }
           - { name: rust_mcp_server,     src: src-rust_mcp_server,     bin: rust-mcp-server,     args: '-p rust-mcp-server' }
-          - { name: mcp_proxy,           src: src-mcp_proxy,           bin: mcp-proxy,           args: '-p mcp-proxy' }
+          - { name: mcp_proxy,           src: src-mcp_proxy,           bin: mcp-proxy,           args: '-p mcp-stdio-proxy' }
           - { name: rust_mcp_filesystem, src: src-rust-mcp-filesystem, bin: rust-mcp-filesystem, args: '' }
           - { name: rust_docs_mcp,       src: src-rust_docs_mcp,       bin: rust-docs-mcp,       args: '' }
           - { name: typemill,            src: src-typemill,            bin: mill,                args: '-p mill' }
@@ -34,13 +34,17 @@ jobs:
       - name: Install cross
         run: cargo install cross
 
-      - name: Patch agentic_vision deps (if needed)
+      - name: Clone agentic-sdk (for agentic_vision)
         if: matrix.plugin.patch_deps == 'true'
         run: |
-          cd build/${{ matrix.plugin.src }}
-          # Remove external path dependency that breaks cross
-          sed -i '/agentic-sdk/d' Cargo.toml
-          cat Cargo.toml
+          git clone --depth 1 https://github.com/agentralabs/agentic-sdk build/agentic-sdk
+          # Move the src dir alongside agentic-sdk for path dep resolution
+          cd build
+          # agentic-sdk expects ../agentic-sdk relative to agentic-vision workspace
+          # Our layout: build/src-agentic_vision  and  build/agentic-sdk
+          # So from src-agentic_vision, ../agentic-sdk = build/agentic-sdk ✓
+          echo "Layout:"
+          ls -d */ | head -10
 
       - name: Build ${{ matrix.plugin.name }}
         run: |
