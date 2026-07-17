@@ -1,0 +1,7 @@
+[build]
+pre-build = [
+    "apt-get update && apt-get install -y curl ca-certificates python3 || true"
+]
+
+[target.aarch64-unknown-linux-musl]
+env = { "RUSTY_V8_MIRROR" = "https://github.com/denoland/rusty_v8/releases/download" }
