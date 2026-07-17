@@ -1,5 +1,5 @@
 [package]
-name = "rustdocs_mcp_server"
+name = "rust-docs-mcp"
 version = "1.3.1"
 edition = "2024"
 
