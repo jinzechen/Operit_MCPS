@@ -8,7 +8,7 @@ on:
   workflow_dispatch:
 
 jobs:
-  # ─── Standard cross-compile jobs ───
+  # Standard cross-compile jobs
   build:
     runs-on: ubuntu-latest
     strategy:
@@ -17,11 +17,10 @@ jobs:
         plugin:
           - { name: rust_mcp_server,     src: src-rust_mcp_server,     bin: rust-mcp-server,     args: '-p rust-mcp-server' }
           - { name: rust_mcp_filesystem, src: src-rust-mcp-filesystem, bin: rust-mcp-filesystem, args: '' }
-          - { name: rust_docs_mcp,       src: src-rust_docs_mcp,       bin: rust-docs-mcp,       args: '' }
+          - { name: rust_docs_mcp,       src: src-rust_docs_mcp_v2,   bin: rust-docs-mcp,       args: '' }
           - { name: typemill,            src: src-typemill,            bin: mill,                args: '-p mill' }
           - { name: hotnews,             src: src-hotnews,             bin: hotnews,             args: '' }
           - { name: mcp_research_router, src: src-mcp_research_router, bin: mcp_research_router, args: '' }
-          # Simplified rewrites (no complex deps)
           - { name: agentic_vision,      src: src-agentic_vision_simple, bin: agentic-vision-mcp, args: '' }
           - { name: mcp_proxy,           src: src-mcp_proxy_simple,      bin: mcp-proxy,         args: '' }
     steps:
@@ -37,6 +36,10 @@ jobs:
           chmod +x dist/${{ matrix.plugin.bin }}
           if [ "${{ matrix.plugin.name }}" = "obscura" ]; then T="build/templates/index_obscura_base.js"; else T="build/templates/index_base.js"; fi
           sed "s/__BIN__/${{ matrix.plugin.bin }}/g; s/__NAME__/${{ matrix.plugin.name }}/g" "$T" > dist/index.js
+          # rust_mcp_filesystem needs --enable-roots
+          if [ "${{ matrix.plugin.name }}" = "rust_mcp_filesystem" ]; then
+            sed -i 's|spawn(BIN_PATH, \[\],|spawn(BIN_PATH, ["--enable-roots"],|' dist/index.js
+          fi
           echo "{\"name\":\"${{ matrix.plugin.name }}\",\"version\":\"1.0.0\",\"main\":\"index.js\",\"dependencies\":{}}" > dist/package.json
           zip -j dist/${{ matrix.plugin.name }}.zip dist/${{ matrix.plugin.bin }} dist/index.js dist/package.json
       - uses: actions/upload-artifact@v4
@@ -44,7 +47,7 @@ jobs:
           name: ${{ matrix.plugin.name }}
           path: dist/${{ matrix.plugin.name }}.zip
 
-  # ─── obscura: download prebuilt binary ───
+  # obscura: download prebuilt binary
   obscura:
     runs-on: ubuntu-latest
     steps:
@@ -60,7 +63,6 @@ jobs:
           sed "s/__BIN__/obscura/g; s/__NAME__/obscura/g" "$T" > dist/index.js
           echo '{"name":"obscura","version":"1.0.0","main":"index.js","dependencies":{}}' > dist/package.json
           zip -j dist/obscura.zip dist/obscura dist/index.js dist/package.json
-          file dist/obscura
       - uses: actions/upload-artifact@v4
         with:
           name: obscura
