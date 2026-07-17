@@ -1,0 +1,39 @@
+{
+  "name": "@cortex/mcp-server",
+  "version": "1.0.0",
+  "description": "Model Context Protocol server for Cortex — translates MCP tool calls into Cortex protocol messages over Unix socket",
+  "author": "Cortex Contributors",
+  "type": "module",
+  "license": "Apache-2.0",
+  "homepage": "https://agentralabs.tech",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/agentralabs/agentic-vision.git",
+    "directory": "integrations/mcp-server"
+  },
+  "bugs": "https://github.com/agentralabs/agentic-vision/issues",
+  "keywords": ["mcp", "cortex", "ai", "agent", "web", "cartography"],
+  "bin": {
+    "cortex-mcp-server": "./dist/index.js"
+  },
+  "main": "./dist/index.js",
+  "types": "./dist/index.d.ts",
+  "files": [
+    "dist"
+  ],
+  "scripts": {
+    "build": "tsc",
+    "start": "node dist/index.js",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.0.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.11.0",
+    "typescript": "^5.3.0"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}

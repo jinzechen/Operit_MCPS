@@ -1,0 +1,90 @@
+name: Build
+
+on:
+  push:
+    branches: [ "master" ]
+  pull_request:
+  workflow_dispatch:
+
+env:
+  CARGO_TERM_COLOR: always
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        include:
+        # https://docs.github.com/en/actions/how-tos/using-github-hosted-runners/using-github-hosted-runners/about-github-hosted-runners#supported-runners-and-hardware-resources
+        - target: x86_64-pc-windows-msvc
+          os: windows-latest
+        - target: aarch64-pc-windows-msvc
+          os: windows-11-arm
+        - target: x86_64-unknown-linux-gnu
+          os: ubuntu-latest
+        - target: aarch64-unknown-linux-gnu
+          os: ubuntu-24.04-arm
+        - target: x86_64-apple-darwin
+          os: macos-latest
+        - target: aarch64-apple-darwin
+          os: macos-latest
+
+    runs-on: ${{ matrix.os }}
+    name: ${{ matrix.target }}
+
+    steps:
+    - uses: actions/checkout@v7
+    - uses: Swatinem/rust-cache@v2
+
+    - name: Install rustup
+      if: ${{ matrix.os == 'windows-11-arm' || matrix.os == 'ubuntu-24.04-arm' }}
+      uses: dtolnay/rust-toolchain@stable
+
+    - name: Add target
+      run: rustup target add ${{ matrix.target }}
+
+    - name: Build
+      run: cargo build --locked --verbose --target ${{ matrix.target }}
+
+    - name: Run tests
+      run: cargo test --locked --verbose --all-features --target ${{ matrix.target }}
+
+    - name: Build (release)
+      run: cargo build --release --locked --verbose --target ${{ matrix.target }}
+
+    - name: Run tests (release)
+      run: cargo test --release --locked --verbose --all-features --target ${{ matrix.target }}
+
+  code_guidelines:
+    runs-on: ubuntu-latest
+    name: Code guidelines
+
+    steps:
+    - uses: actions/checkout@v7
+
+    - name: Update Rust
+      run: |
+        rustup update
+        rustup toolchain install nightly
+        rustup component add --toolchain nightly rustfmt
+
+    - name: fmt
+      run: cargo +nightly fmt --check
+
+    - name: clippy
+      run: cargo clippy --locked --all-targets --all-features -- -D warnings
+
+    - name: Install cargo-quickinstall
+      run: cargo install cargo-quickinstall
+
+    - name: Install cargo-machete
+      run: cargo quickinstall cargo-machete
+
+    - name: machete
+      run: cargo machete
+      
+    - name: Install cargo-deny
+      run: cargo quickinstall cargo-deny
+
+    - name: cargo-deny
+      run: cargo deny check --allow license-not-encountered

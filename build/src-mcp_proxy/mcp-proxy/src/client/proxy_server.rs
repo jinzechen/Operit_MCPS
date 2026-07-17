@@ -1,0 +1,378 @@
+//! MCP Proxy Server - 将 stdio MCP 服务代理为 HTTP/SSE 或 Streamable HTTP 服务
+//!
+//! 支持多个 agent 复用同一个 MCP 服务
+
+use std::collections::HashMap;
+use std::path::PathBuf;
+use std::sync::Once;
+use std::time::Duration;
+
+use anyhow::{Result, bail};
+use clap::Parser;
+use serde::Deserialize;
+use tracing::{error, info, warn};
+
+use crate::client::support::{LoggingArgs, init_logging_with_config};
+use crate::proxy::ToolFilter;
+
+/// Panic hook 初始化标志（确保只设置一次）
+static INIT_PANIC_HOOK: Once = Once::new();
+
+/// 最大重试次数 (0 = 无限重试)
+const MAX_RETRIES: u32 = 0;
+/// 初始重试间隔（秒）
+const INITIAL_RETRY_DELAY_SECS: u64 = 3;
+/// 最大重试间隔（秒）
+const MAX_RETRY_DELAY_SECS: u64 = 30;
+
+/// 输出协议类型
+#[derive(clap::ValueEnum, Clone, Debug, Default)]
+pub enum ProxyProtocol {
+    /// SSE 协议
+    Sse,
+    /// Streamable HTTP 协议
+    #[default]
+    Stream,
+}
+
+/// 代理模式参数 - 将 stdio MCP 服务代理为 HTTP 服务
+#[derive(Parser, Debug, Clone)]
+pub struct ProxyArgs {
+    /// 监听端口
+    #[arg(short, long, default_value = "8080", help = "监听端口")]
+    pub port: u16,
+
+    /// 监听地址
+    #[arg(long, default_value = "127.0.0.1", help = "监听地址")]
+    pub host: String,
+
+    /// MCP 服务名称（当配置包含多个服务时必需）
+    #[arg(short, long, help = "MCP 服务名称（多服务配置时必需）")]
+    pub name: Option<String>,
+
+    /// MCP 服务配置 JSON
+    #[arg(long, conflicts_with = "config_file", help = "MCP 服务配置 JSON")]
+    pub config: Option<String>,
+
+    /// MCP 服务配置文件路径
+    #[arg(long, conflicts_with = "config", help = "MCP 服务配置文件路径")]
+    pub config_file: Option<PathBuf>,
+
+    /// 输出协议类型
+    #[arg(long, value_enum, default_value = "stream", help = "输出协议类型")]
+    pub protocol: ProxyProtocol,
+
+    /// SSE 端点路径（仅 SSE 协议）
+    #[arg(long, default_value = "/sse", help = "SSE 端点路径")]
+    pub sse_path: String,
+
+    /// 消息端点路径（仅 SSE 协议）
+    #[arg(long, default_value = "/message", help = "消息端点路径")]
+    pub message_path: String,
+
+    /// 工具白名单（逗号分隔），只允许指定的工具
+    #[arg(long, value_delimiter = ',', help = "工具白名单（逗号分隔）")]
+    pub allow_tools: Option<Vec<String>>,
+
+    /// 工具黑名单（逗号分隔），排除指定的工具
+    #[arg(long, value_delimiter = ',', help = "工具黑名单（逗号分隔）")]
+    pub deny_tools: Option<Vec<String>>,
+
+    /// 日志配置（使用通用结构）
+    #[command(flatten)]
+    pub logging: LoggingArgs,
+}
+
+/// MCP 配置格式
+#[derive(Deserialize, Debug)]
+struct McpConfig {
+    #[serde(rename = "mcpServers")]
+    mcp_servers: HashMap<String, StdioConfig>,
+}
+
+/// stdio 配置
+#[derive(Deserialize, Debug, Clone)]
+struct StdioConfig {
+    command: String,
+    args: Option<Vec<String>>,
+    env: Option<HashMap<String, String>>,
+}
+
+/// 解析后的服务配置（包含服务名）
+struct ParsedConfig {
+    name: String,
+    config: StdioConfig,
+}
+
+/// 运行代理命令
+pub async fn run_proxy_command(args: ProxyArgs, verbose: bool, quiet: bool) -> Result<()> {
+    // 设置 panic hook 以记录详细的 panic 信息（只设置一次）
+    INIT_PANIC_HOOK.call_once(|| {
+        std::panic::set_hook(Box::new(|panic_info| {
+            let backtrace = std::backtrace::Backtrace::capture();
+            error!(
+                "[PANIC] Program panic - Location: {}:{}, Message: {:?}",
+                panic_info.location().map(|l| l.file()).unwrap_or("unknown"),
+                panic_info.location().map(|l| l.line()).unwrap_or(0),
+                panic_info.payload().downcast_ref::<String>()
+            );
+            error!("[PANIC] Stack trace:\\n{:?}", backtrace);
+        }));
+    });
+
+    // 1. 验证互斥参数
+    if args.allow_tools.is_some() && args.deny_tools.is_some() {
+        bail!("--allow-tools 和 --deny-tools 不能同时使用，请只选择其中一个");
+    }
+
+    // 2. 解析配置
+    let parsed = parse_config(&args)?;
+
+    // 2.5 初始化镜像源环境变量（MCP_PROXY_NPM_REGISTRY → npm_config_registry 等）
+    // 必须在日志初始化之前、单线程阶段调用
+    {
+        let mirror = mcp_common::mirror::MirrorConfig::from_env();
+        if !mirror.is_empty() {
+            mirror.apply_to_process_env();
+        }
+    }
+
+    // 3. 初始化日志系统（在启动服务之前）
+    init_logging_with_config(&args.logging, Some(&parsed.name), quiet, verbose)?;
+
+    // 4. 创建工具过滤器
+    let tool_filter = if let Some(allow_tools) = args.allow_tools.clone() {
+        ToolFilter::allow(allow_tools)
+    } else if let Some(deny_tools) = args.deny_tools.clone() {
+        ToolFilter::deny(deny_tools)
+    } else {
+        ToolFilter::default()
+    };
+
+    let protocol_name = match args.protocol {
+        ProxyProtocol::Sse => "SSE",
+        ProxyProtocol::Stream => "Streamable HTTP",
+    };
+
+    // 记录服务启动信息到日志文件
+    info!(
+        "[Service startup] MCP Proxy service startup - protocol: {}, service name: {}, command: {} {:?}",
+        protocol_name,
+        parsed.name,
+        parsed.config.command,
+        parsed.config.args.as_ref().unwrap_or(&vec![])
+    );
+
+    if let Some(ref allow_tools) = args.allow_tools {
+        info!("[Service startup] Tool whitelist: {:?}", allow_tools);
+    }
+    if let Some(ref deny_tools) = args.deny_tools {
+        info!("[Service startup] Tool blacklist: {:?}", deny_tools);
+    }
+
+    if !quiet {
+        eprintln!("🚀 MCP Proxy Service");
+        eprintln!("Protocol type: {}", protocol_name);
+        eprintln!("Service name: {}", parsed.name);
+        eprintln!(
+            "Command: {} {:?}",
+            parsed.config.command,
+            parsed.config.args.as_ref().unwrap_or(&vec![])
+        );
+        if verbose && let Some(ref env) = parsed.config.env {
+            eprintln!("Environment variable: {:?}", env);
+        }
+        // 显示过滤器配置
+        if let Some(ref allow_tools) = args.allow_tools {
+            eprintln!("Tool whitelist: {:?}", allow_tools);
+        }
+        if let Some(ref deny_tools) = args.deny_tools {
+            eprintln!("Tool blacklist: {:?}", deny_tools);
+        }
+    }
+
+    // 5. 端口提前绑定（在重试循环之前），确保 ServiceManager 的 TCP 健康检查能检测到进程存活
+    let bind_addr = format!("{}:{}", args.host, args.port);
+    let std_listener = std::net::TcpListener::bind(&bind_addr)
+        .map_err(|e| anyhow::anyhow!("端口绑定失败 {}: {}", bind_addr, e))?;
+    std_listener
+        .set_nonblocking(true)
+        .map_err(|e| anyhow::anyhow!("设置非阻塞失败: {}", e))?;
+    info!("[Port Binding] Binded {}", bind_addr);
+
+    // 6. 主循环 - 支持子进程崩溃后自动重启（指数退避，有上限）
+    let mut retry_count: u32 = 0;
+    let mut retry_delay = Duration::from_secs(INITIAL_RETRY_DELAY_SECS);
+
+    loop {
+        let result = run_proxy_server(
+            &args,
+            &parsed,
+            &std_listener,
+            tool_filter.clone(),
+            verbose,
+            quiet,
+        )
+        .await;
+
+        match result {
+            Ok(_) => {
+                // 正常退出（如 Ctrl+C）
+                info!(
+                    "[Service stopped] MCP Proxy service stopped normally - service name: {}",
+                    parsed.name
+                );
+                if !quiet {
+                    eprintln!("🛑 Service has been stopped");
+                }
+                break;
+            }
+            Err(e) => {
+                retry_count += 1;
+                // MAX_RETRIES = 0 表示无限重试，非零值表示最大重试次数
+                #[allow(clippy::absurd_extreme_comparisons)]
+                if MAX_RETRIES > 0 && retry_count >= MAX_RETRIES {
+                    error!(
+                        "[Service Termination] Maximum number of retries reached {}, service name: {}, last error: {}",
+                        MAX_RETRIES, parsed.name, e
+                    );
+                    return Err(e);
+                }
+                let retry_info = if MAX_RETRIES == 0 {
+                    format!("第{}次", retry_count)
+                } else {
+                    format!("第{}/{}次", retry_count, MAX_RETRIES)
+                };
+                error!(
+                    "[Service exception] MCP Proxy service exited abnormally - service name: {}, error: {}, {} and restarts after seconds ({})",
+                    parsed.name,
+                    e,
+                    retry_delay.as_secs(),
+                    retry_info
+                );
+                eprintln!(
+                    "⚠️ Service exception: {}, {}, restart after seconds ({})...",
+                    e,
+                    retry_delay.as_secs(),
+                    retry_info
+                );
+                tokio::time::sleep(retry_delay).await;
+                retry_delay =
+                    std::cmp::min(retry_delay * 2, Duration::from_secs(MAX_RETRY_DELAY_SECS));
+                warn!(
+                    "[Service Restart] Restarting MCP Proxy service - Service name: {}",
+                    parsed.name
+                );
+                if !quiet {
+                    eprintln!("🔄 Restarting service...");
+                }
+                continue;
+            }
+        }
+    }
+
+    Ok(())
+}
+
+/// 运行代理服务器（单次运行）
+async fn run_proxy_server(
+    args: &ProxyArgs,
+    parsed: &ParsedConfig,
+    std_listener: &std::net::TcpListener,
+    tool_filter: ToolFilter,
+    _verbose: bool,
+    quiet: bool,
+) -> Result<()> {
+    // Windows 上解析命令扩展名（如 npx -> npx.cmd）
+    let resolved_command = mcp_common::resolve_windows_command(&parsed.config.command);
+    if resolved_command != parsed.config.command {
+        info!(
+            "[Command parsing] Windows command parsed: {} -> {}",
+            parsed.config.command, resolved_command
+        );
+    }
+
+    // 根据协议类型选择对应的库并启动服务器
+    // 每个库使用自己的 rmcp 版本创建完整的生命周期
+    match args.protocol {
+        ProxyProtocol::Sse => {
+            // 使用 mcp-sse-proxy 库（rmcp 0.10）
+            let config = mcp_sse_proxy::McpServiceConfig {
+                name: parsed.name.clone(),
+                command: resolved_command,
+                args: parsed.config.args.clone(),
+                env: parsed.config.env.clone(),
+                tool_filter: Some(tool_filter),
+            };
+            mcp_sse_proxy::run_sse_server_from_config(config, std_listener, quiet).await
+        }
+        ProxyProtocol::Stream => {
+            // 使用 mcp-streamable-proxy 库（rmcp 0.12）
+            let config = mcp_streamable_proxy::McpServiceConfig {
+                name: parsed.name.clone(),
+                command: resolved_command,
+                args: parsed.config.args.clone(),
+                env: parsed.config.env.clone(),
+                tool_filter: Some(tool_filter),
+            };
+            mcp_streamable_proxy::run_stream_server_from_config(config, std_listener, quiet).await
+        }
+    }
+}
+
+// Note: 两个库现在都使用 mcp-common::ToolFilter，所以直接传递即可
+
+/// 解析配置
+fn parse_config(args: &ProxyArgs) -> Result<ParsedConfig> {
+    // 1. 读取配置内容
+    let json_str = if let Some(ref config) = args.config {
+        config.clone()
+    } else if let Some(ref path) = args.config_file {
+        std::fs::read_to_string(path).map_err(|e| anyhow::anyhow!("读取配置文件失败: {}", e))?
+    } else {
+        bail!("必须提供 --config 或 --config-file 参数");
+    };
+
+    // 2. 解析配置
+    let mcp_config: McpConfig = serde_json::from_str(&json_str).map_err(|e| {
+        anyhow::anyhow!(
+            "配置解析失败: {}。配置必须是标准 MCP 格式，包含 mcpServers 字段",
+            e
+        )
+    })?;
+
+    let servers = mcp_config.mcp_servers;
+
+    if servers.is_empty() {
+        bail!("配置中没有找到任何 MCP 服务");
+    }
+
+    // 3. 根据服务数量和 --name 参数选择服务
+    if servers.len() == 1 {
+        // 单服务：自动使用，无需 --name
+        let (name, config) = servers.into_iter().next().unwrap();
+        Ok(ParsedConfig { name, config })
+    } else if let Some(ref name) = args.name {
+        // 多服务：根据 --name 选择
+        servers
+            .get(name)
+            .cloned()
+            .map(|config| ParsedConfig {
+                name: name.clone(),
+                config,
+            })
+            .ok_or_else(|| {
+                anyhow::anyhow!(
+                    "服务 '{}' 不存在。可用服务: {:?}",
+                    name,
+                    servers.keys().collect::<Vec<_>>()
+                )
+            })
+    } else {
+        // 多服务但未指定 --name
+        bail!(
+            "配置包含多个服务 {:?}，请使用 --name 指定要启动的服务",
+            servers.keys().collect::<Vec<_>>()
+        );
+    }
+}

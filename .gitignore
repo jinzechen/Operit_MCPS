@@ -1,0 +1,19 @@
+# Build artifacts
+**/target/
+**/debug/
+**/release/
+
+# Temp files
+/tmp/
+*.tmp
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# ZIP placeholders (will be replaced by CI artifacts)
+*.zip

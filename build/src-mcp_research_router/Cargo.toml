@@ -1,0 +1,15 @@
+[package]
+name = "mcp_research_router"
+version = "1.0.0"
+edition = "2021"
+
+[[bin]]
+name = "mcp_research_router"
+path = "src/main.rs"
+
+[dependencies]
+tokio = { version = "1", features = ["full"] }
+serde = { version = "1", features = ["derive"] }
+serde_json = "1"
+reqwest = { version = "0.11", default-features = false, features = ["json", "rustls-tls"] }
+anyhow = "1"

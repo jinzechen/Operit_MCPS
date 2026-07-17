@@ -1,0 +1,74 @@
+# Git
+.git
+.gitignore
+.github
+
+# IDE
+.vscode
+.idea
+*.swp
+*.swo
+*~
+
+# Build artifacts
+target/
+dist/
+*.exe
+*.dll
+*.so
+*.dylib
+
+# Temp files
+temp/
+tmp/
+*.tmp
+*.log
+logs/
+
+# Cargo
+.cargo/
+
+# Docs
+*.md
+README*
+CHANGELOG*
+LICENSE*
+LICENSE-*
+
+# Config
+.env*
+!.env.example
+
+# Tests
+**/tests/
+benches/
+examples/
+fixtures/
+
+# Misc
+.DS_Store
+Thumb.db
+
+# Project specific
+data/
+assets/
+scripts/
+spec/
+rmcp_code/
+.cursor/
+.devcontainer/
+.kiro/
+.trae/
+
+# CI/CD
+.github/workflows/
+
+# Config files
+.pre-commit-config.yaml
+_typos.toml
+cliff.toml
+deny.toml
+
+# Keep essential files
+!Cargo.toml
+!Cargo.lock

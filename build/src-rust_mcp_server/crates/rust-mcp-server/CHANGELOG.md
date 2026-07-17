@@ -1,0 +1,163 @@
+# Changelog
+
+All notable changes to this project will be documented in this file.
+
+The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
+and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
+
+## [Unreleased]
+
+## [0.4.0](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.8...v0.4.0) - 2026-07-05
+
+### Added
+
+- add support for the streamable HTTP transport mode ([#128](https://github.com/Vaiz/rust-mcp-server/pull/128))
+
+### Changed
+
+- run cargo command execution on blocking threads to avoid stalling the async runtime ([#132](https://github.com/Vaiz/rust-mcp-server/pull/132))
+- switch error handling from `anyhow` to `ohno::AppError` ([#123](https://github.com/Vaiz/rust-mcp-server/pull/123))
+- update `rmcp` to 2.1 ([#126](https://github.com/Vaiz/rust-mcp-server/pull/126))
+
+## [0.3.8](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.7...v0.3.8) - 2026-05-08
+
+### Added
+
+- add option to treat warnings as errors in CargoDocRequest ([#112](https://github.com/Vaiz/rust-mcp-server/pull/112))
+
+### Fixed
+
+- don't run tests on the whole workspace when package is specified ([#114](https://github.com/Vaiz/rust-mcp-server/pull/114))
+
+## [0.3.7](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.6...v0.3.7) - 2026-04-05
+
+### Added
+
+- reduce `cargo-insta-update-snapshots` tool verbosity ([#110](https://github.com/Vaiz/rust-mcp-server/pull/110))
+- use roots/list to automatically detect workspace directory ([#108](https://github.com/Vaiz/rust-mcp-server/pull/108))
+
+## [0.3.6](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.5...v0.3.6) - 2026-03-09
+
+### Added
+
+- enhance cargo-insta with additional options ([#98](https://github.com/Vaiz/rust-mcp-server/pull/98))
+- add cargo-insta-update-snapshots tool ([#95](https://github.com/Vaiz/rust-mcp-server/pull/95))
+
+### Other
+
+- bump rmpc to 1.1.1 and remove docker.yml ([#102](https://github.com/Vaiz/rust-mcp-server/pull/102))
+- update rmcp version to 1.1.0 ([#97](https://github.com/Vaiz/rust-mcp-server/pull/97))
+
+## [0.3.5](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.4...v0.3.5) - 2026-02-28
+
+### Other
+
+- bump rmcp from 0.16.0 to 0.17.0 ([#94](https://github.com/Vaiz/rust-mcp-server/pull/94))
+- bump rmcp from 0.15.0 to 0.16.0 ([#92](https://github.com/Vaiz/rust-mcp-server/pull/92))
+
+## [0.3.4](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.3...v0.3.4) - 2026-02-14
+
+### Other
+
+- bump rmcp from 0.14.0 to 0.15.0 ([#89](https://github.com/Vaiz/rust-mcp-server/pull/89))
+
+## [0.3.3](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.2...v0.3.3) - 2026-01-24
+
+### Other
+
+- bump rmcp from 0.12.0 to 0.14.0 ([#87](https://github.com/Vaiz/rust-mcp-server/pull/87))
+
+## [0.3.2](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.1...v0.3.2) - 2026-01-20
+
+### Added
+
+- add cli option to set default registry ([#85](https://github.com/Vaiz/rust-mcp-server/pull/85))
+- add cargo-tree and cargo-expand tools ([#84](https://github.com/Vaiz/rust-mcp-server/pull/84))
+
+## [0.3.1](https://github.com/Vaiz/rust-mcp-server/compare/v0.3.0...v0.3.1) - 2025-12-20
+
+### Added
+
+- add option to disable recommendations ([#78](https://github.com/Vaiz/rust-mcp-server/pull/78))
+- add additional metadata and recommendations ([#77](https://github.com/Vaiz/rust-mcp-server/pull/77))
+- add workspace-info tool ([#73](https://github.com/Vaiz/rust-mcp-server/pull/73))
+
+### Other
+
+- update rmcp dependency to version 0.12.0 ([#76](https://github.com/Vaiz/rust-mcp-server/pull/76))
+
+## [0.3.0](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.7...v0.3.0) - 2025-12-13
+
+### Breaking
+
+- switch to MCP 2025-11-25 by moving to `rmcp` crate ([#72](https://github.com/Vaiz/rust-mcp-server/pull/72))
+- remove timeout option (`rmcp` doesn't support it)
+- remove `update-crates` prompt
+- remove Cargo Book documentation from resources
+- add built-in documentation generation capability (replacing external mcp-discovery tool)
+
+### Other
+
+- bump schemars from 1.0.4 to 1.1.0 ([#68](https://github.com/Vaiz/rust-mcp-server/pull/68))
+
+## [0.2.7](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.6...v0.2.7) - 2025-10-13
+
+### Fixed
+
+- treat empty strings as None ([#66](https://github.com/Vaiz/rust-mcp-server/pull/66))
+
+## [0.2.6](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.5...v0.2.6) - 2025-10-11
+
+### Other
+
+- update rust-mcp-sdk to 0.7 ([#62](https://github.com/Vaiz/rust-mcp-server/pull/62))
+
+## [0.2.5](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.4...v0.2.5) - 2025-09-06
+
+### Fixed
+
+- features parsing in cargo-test ([#57](https://github.com/Vaiz/rust-mcp-server/pull/57))
+
+## [0.2.4](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.3...v0.2.4) - 2025-08-24
+
+### Changes
+
+- update deps ([#52](https://github.com/Vaiz/rust-mcp-server/pull/52))
+- fix links ([#54](https://github.com/Vaiz/rust-mcp-server/pull/54))
+- cleanup readme ([#55](https://github.com/Vaiz/rust-mcp-server/pull/55))
+
+## [0.2.3](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.2...v0.2.3) - 2025-07-28
+
+### Fixed
+
+- small issues with package parameter ([#48](https://github.com/Vaiz/rust-mcp-server/pull/48))
+
+## [0.2.2](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.1...v0.2.2) - 2025-07-27
+
+### Added
+
+- improve UX ([#47](https://github.com/Vaiz/rust-mcp-server/pull/47))
+- add cargo-doc tool ([#46](https://github.com/Vaiz/rust-mcp-server/pull/46))
+- add rustc-explain tool ([#44](https://github.com/Vaiz/rust-mcp-server/pull/44))
+
+## [0.2.1](https://github.com/Vaiz/rust-mcp-server/compare/v0.2.0...v0.2.1) - 2025-07-06
+
+### Changes
+
+- merge flags into enums to reduce the number of parameters ([#43](https://github.com/Vaiz/rust-mcp-server/pull/43))
+- switch to `schemars` crate for generating JsonSchema ([#40](https://github.com/Vaiz/rust-mcp-server/pull/40))
+
+## [0.2.0](https://github.com/Vaiz/rust-mcp-server/compare/v0.1.1...v0.2.0) - 2025-07-05
+
+### Added
+
+- [**breaking**] update MCP to 2025-06-18 ([#38](https://github.com/Vaiz/rust-mcp-server/pull/38))
+
+## [0.1.1](https://github.com/Vaiz/rust-mcp-server/compare/v0.1.0...v0.1.1) - 2025-07-01
+
+### Changes
+
+- add experimental support for fetching Cargo Book ([#34](https://github.com/Vaiz/rust-mcp-server/pull/34))
+- add support for cargo-package ([#36](https://github.com/Vaiz/rust-mcp-server/pull/36))
+- clean up published package ([#32](https://github.com/Vaiz/rust-mcp-server/pull/32), [#35](https://github.com/Vaiz/rust-mcp-server/pull/35))
+- update rust-mcp-sdk to 0.4.7 ([#30](https://github.com/Vaiz/rust-mcp-server/pull/30))

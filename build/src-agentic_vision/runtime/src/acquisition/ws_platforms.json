@@ -1,0 +1,96 @@
+{
+  "slack.com": {
+    "ws_url_pattern": "wss://wss-primary.slack.com/",
+    "protocol": "raw",
+    "auth": "query_param_token",
+    "ping": {"type": "ping", "id": 0},
+    "send_message": {"type": "message", "channel": "{channel}", "text": "{text}"}
+  },
+  "discord.com": {
+    "ws_url": "wss://gateway.discord.gg/?v=10&encoding=json",
+    "protocol": "raw",
+    "auth": "first_message",
+    "auth_message": {"op": 2, "d": {"token": "{token}", "intents": 513}},
+    "heartbeat": {"op": 1, "d": null}
+  },
+  "teams.microsoft.com": {
+    "ws_url_pattern": "wss://trouter2-{region}-signal.trouter.teams.microsoft.com/",
+    "protocol": "raw",
+    "auth": "query_param_token"
+  },
+  "web.whatsapp.com": {
+    "ws_url": "wss://web.whatsapp.com/ws/chat",
+    "protocol": "raw",
+    "auth": "cookie"
+  },
+  "linear.app": {
+    "ws_url": "wss://sync.linear.app/",
+    "protocol": "raw",
+    "auth": "header"
+  },
+  "firebase.google.com": {
+    "ws_url_pattern": "wss://{project}.firebaseio.com/.ws",
+    "protocol": "raw",
+    "auth": "query_param_token"
+  },
+  "supabase.co": {
+    "ws_url_pattern": "wss://{project}.supabase.co/realtime/v1/websocket",
+    "protocol": "raw",
+    "auth": "query_param_token"
+  },
+  "notion.so": {
+    "ws_url_pattern": "wss://msgstore.www.notion.so/primus/",
+    "protocol": "sockjs",
+    "auth": "cookie"
+  },
+  "figma.com": {
+    "ws_url_pattern": "wss://www.figma.com/fig-wss/",
+    "protocol": "raw",
+    "auth": "cookie"
+  },
+  "github.com": {
+    "ws_url": "wss://alive.github.com/",
+    "protocol": "raw",
+    "auth": "cookie"
+  },
+  "reddit.com": {
+    "ws_url_pattern": "wss://gql-realtime-2.reddit.com/query",
+    "protocol": "raw",
+    "auth": "header"
+  },
+  "x.com": {
+    "ws_url_pattern": "wss://streaming.x.com/",
+    "protocol": "raw",
+    "auth": "header"
+  },
+  "stripe.com": {
+    "ws_url_pattern": "wss://dashboard.stripe.com/ws/",
+    "protocol": "raw",
+    "auth": "cookie"
+  },
+  "vercel.com": {
+    "ws_url_pattern": "wss://ws.vercel.com/",
+    "protocol": "raw",
+    "auth": "header"
+  },
+  "gitlab.com": {
+    "ws_url": "wss://gitlab.com/-/cable",
+    "protocol": "raw",
+    "auth": "cookie"
+  },
+  "bloomberg.com": {
+    "ws_url_pattern": "wss://push.bloomberg.com/ws/",
+    "protocol": "raw",
+    "auth": "header"
+  },
+  "coinmarketcap.com": {
+    "ws_url": "wss://push.coinmarketcap.com/ws",
+    "protocol": "raw",
+    "auth": "none"
+  },
+  "finance.yahoo.com": {
+    "ws_url": "wss://streamer.finance.yahoo.com/",
+    "protocol": "raw",
+    "auth": "none"
+  }
+}

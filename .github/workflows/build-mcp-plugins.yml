@@ -1,0 +1,82 @@
+name: Build MCP Plugins for Operit
+
+on:
+  push:
+    paths:
+      - 'build/src-*/**'
+      - '.github/workflows/build-mcp-plugins.yml'
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        plugin:
+          - { name: obscura,            src: src-obscura,             bin: obscura,             args: '' }
+          - { name: agentic_vision,     src: src-agentic_vision,      bin: agentic-vision-mcp,  args: '--bin agentic-vision-mcp' }
+          - { name: rust_mcp_server,    src: src-rust_mcp_server,     bin: rust-mcp-server,     args: '-p rust-mcp-server' }
+          - { name: mcp_proxy,          src: src-mcp_proxy,           bin: mcp-proxy,           args: '-p mcp-proxy' }
+          - { name: rust_mcp_filesystem,src: src-rust-mcp-filesystem, bin: rust-mcp-filesystem, args: '' }
+          - { name: rust_docs_mcp,      src: src-rust_docs_mcp,       bin: rust-docs-mcp,       args: '' }
+          - { name: typemill,           src: src-typemill,            bin: mill,                args: '-p mill' }
+          - { name: hotnews,            src: src-hotnews,             bin: hotnews,             args: '' }
+          - { name: mcp_research_router,src: src-mcp_research_router, bin: mcp_research_router, args: '' }
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install Rust
+        uses: dtolnay/rust-toolchain@stable
+        with:
+          targets: aarch64-unknown-linux-musl
+
+      - name: Install cross
+        run: cargo install cross --git https://github.com/cross-rs/cross
+
+      - name: Build ${{ matrix.plugin.name }}
+        run: |
+          cd build/${{ matrix.plugin.src }}
+          cross build --target aarch64-unknown-linux-musl --release ${{ matrix.plugin.args }}
+
+      - name: Package ${{ matrix.plugin.name }}
+        run: |
+          mkdir -p dist
+          cd build/${{ matrix.plugin.src }}
+          cp target/aarch64-unknown-linux-musl/release/${{ matrix.plugin.bin }} ../../dist/
+          cd ../../dist
+          chmod +x ${{ matrix.plugin.bin }}
+          # Create index.js and package.json from templates
+          # (These are pre-generated; just need to zip)
+          cp ../${{ matrix.plugin.name }}_index.js index.js
+          cp ../${{ matrix.plugin.name }}_package.json package.json
+          sed -i "s/__BIN__/${{ matrix.plugin.bin }}/g" index.js
+          sed -i "s/__NAME__/${{ matrix.plugin.name }}/g" index.js
+          sed -i "s/__NAME__/${{ matrix.plugin.name }}/g" package.json
+          zip -j ${{ matrix.plugin.name }}.zip ${{ matrix.plugin.bin }} index.js package.json
+
+      - name: Upload artifact
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ matrix.plugin.name }}
+          path: dist/${{ matrix.plugin.name }}.zip
+
+  # Aggregate all artifacts into one
+  aggregate:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - name: Download all artifacts
+        uses: actions/download-artifact@v4
+        with:
+          path: all-plugins
+
+      - name: Create final archive
+        run: |
+          cd all-plugins
+          zip -r ../mcp-plugins-all.zip .
+          
+      - name: Upload final archive
+        uses: actions/upload-artifact@v4
+        with:
+          name: mcp-plugins-all
+          path: mcp-plugins-all.zip

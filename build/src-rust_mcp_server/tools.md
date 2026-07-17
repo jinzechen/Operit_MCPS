@@ -1,0 +1,541 @@
+## Rust MCP Server
+| 🟢 Tools (33) | 🟢 Prompts (0) | 🟢 Resources (0) | <span style="opacity:0.6">🔴 Logging</span> | <span style="opacity:0.6">🔴 Completions</span> | <span style="opacity:0.6">🔴 Experimental</span> |
+| --- | --- | --- | --- | --- | --- |
+
+## 🛠️ Tools (33)
+
+
+- **cargo-add**
+  - Adds a dependency to a Rust project using cargo add.
+  - **Inputs:**
+      - <code>branch</code> : string<br />
+      - <code>default_features</code> : boolean<br />
+      - <code>dependency_type</code> : string<br />
+      - <code>dry_run</code> : boolean<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>git</code> : string<br />
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>optional</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string<br />
+      - <code>path</code> : string<br />
+      - <code>registry</code> : string<br />
+      - <code>rename</code> : string<br />
+      - <code>rev</code> : string<br />
+      - <code>tag</code> : string<br />
+      - <code>target</code> : string<br />
+      - <code>target_package</code> : string<br />
+      - <code>toolchain</code> : string<br />
+      - <code>version</code> : string<br />
+
+- **cargo-build**
+  - Builds a Rust project using Cargo. Usually, run without any additional arguments.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>all_targets</code> : boolean<br />
+      - <code>bench</code> : string<br />
+      - <code>benches</code> : boolean<br />
+      - <code>bin</code> : string<br />
+      - <code>bins</code> : boolean<br />
+      - <code>example</code> : string<br />
+      - <code>examples</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>jobs</code> : integer<br />
+      - <code>keep_going</code> : boolean<br />
+      - <code>lib</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>profile</code> : string<br />
+      - <code>release</code> : boolean<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>test</code> : string<br />
+      - <code>tests</code> : boolean<br />
+      - <code>toolchain</code> : string<br />
+      - <code>warnings_as_errors</code> : boolean<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-check**
+  - Checks a Rust package and all of its dependencies for errors. Usually, run without any additional arguments.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>all_targets</code> : boolean<br />
+      - <code>bench</code> : string<br />
+      - <code>benches</code> : boolean<br />
+      - <code>bin</code> : string<br />
+      - <code>bins</code> : boolean<br />
+      - <code>example</code> : string<br />
+      - <code>examples</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>jobs</code> : integer<br />
+      - <code>keep_going</code> : boolean<br />
+      - <code>lib</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>profile</code> : string<br />
+      - <code>release</code> : boolean<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>test</code> : string<br />
+      - <code>tests</code> : boolean<br />
+      - <code>toolchain</code> : string<br />
+      - <code>warnings_as_errors</code> : boolean<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-clean**
+  - Cleans the target directory for a Rust project using Cargo. By default, it cleans the entire workspace.
+  - **Inputs:**
+      - <code>doc</code> : boolean<br />
+      - <code>dry_run</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>profile</code> : string<br />
+      - <code>release</code> : boolean<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>toolchain</code> : string<br />
+
+- **cargo-clippy**
+  - Checks a Rust package to catch common mistakes and improve code quality using Clippy
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>all_targets</code> : boolean<br />
+      - <code>allow_dirty</code> : boolean<br />
+      - <code>bench</code> : string<br />
+      - <code>benches</code> : boolean<br />
+      - <code>bin</code> : string<br />
+      - <code>bins</code> : boolean<br />
+      - <code>example</code> : string<br />
+      - <code>examples</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>fix</code> : boolean<br />
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>lib</code> : boolean<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>no_deps</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>profile</code> : string<br />
+      - <code>release</code> : boolean<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>test</code> : string<br />
+      - <code>tests</code> : boolean<br />
+      - <code>toolchain</code> : string<br />
+      - <code>warnings_as_errors</code> : boolean<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-deny-check**
+  - Checks a project's crate graph for security advisories, license compliance, banned crates.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>allow</code> : string [ ]<br />
+      - <code>allow_git_index</code> : boolean<br />
+      - <code>audit_compatible_output</code> : boolean<br />
+      - <code>config</code> : string<br />
+      - <code>deny</code> : string [ ]<br />
+      - <code>disable_fetch</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>exclude_dev</code> : boolean<br />
+      - <code>exclude_unpublished</code> : boolean<br />
+      - <code>feature_depth</code> : integer<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>format</code> : string<br />
+      - <code>graph</code> : string<br />
+      - <code>hide_inclusion_graph</code> : boolean<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>log_level</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>show_stats</code> : boolean<br />
+      - <code>target</code> : string [ ]<br />
+      - <code>warn</code> : string [ ]<br />
+      - <code>which</code> : string [ ]<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-deny-init**
+  - Creates a cargo-deny config from a template
+  - **Inputs:**
+      - <code>config</code> : string<br />
+
+- **cargo-deny-install**
+  - Installs cargo-deny tool for dependency graph analysis and security checks
+
+- **cargo-deny-list**
+  - Outputs a listing of all licenses and the crates that use them
+  - **Inputs:**
+      - <code>config</code> : string<br />
+      - <code>format</code> : string<br />
+      - <code>layout</code> : string<br />
+      - <code>threshold</code> : number<br />
+
+- **cargo-doc**
+  - Build documentation for a Rust package using Cargo. Recommended to use with no_deps and specific package for faster builds. Returns path to generated documentation index.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>bin</code> : string<br />
+      - <code>bins</code> : boolean<br />
+      - <code>docsrs_config</code> : boolean<br />
+      - <code>document_private_items</code> : boolean<br />
+      - <code>example</code> : string<br />
+      - <code>examples</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>jobs</code> : integer<br />
+      - <code>keep_going</code> : boolean<br />
+      - <code>lib</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>message_format</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>no_deps</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>profile</code> : string<br />
+      - <code>release</code> : boolean<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>toolchain</code> : string<br />
+      - <code>warnings_as_errors</code> : boolean<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-expand**
+  - Show the result of macro expansion for Rust code. Requires cargo-expand to be installed (cargo install cargo-expand). Useful for debugging procedural macros, derive macros, and understanding what code macros generate.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>item</code> : string<br />
+      - <code>kind</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>name</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>package</code> : string<br />
+      - <code>profile</code> : string<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>tests</code> : boolean<br />
+      - <code>toolchain</code> : string<br />
+      - <code>ugly</code> : boolean<br />
+      - <code>verbose</code> : boolean<br />
+
+- **cargo-fmt**
+  - Formats Rust code using rustfmt. Usually, run without any additional arguments.
+  - **Inputs:**
+      - <code>all</code> : boolean<br />
+      - <code>check</code> : boolean<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>message_format</code> : string<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>toolchain</code> : string<br />
+
+- **cargo-generate_lockfile**
+  - Generates or updates the Cargo.lock file for a Rust project. Usually, run without any additional arguments.
+  - **Inputs:**
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>output_verbosity</code> : string<br />
+
+- **cargo-hack**
+  - Cargo subcommand to provide various options useful for testing and continuous integration, including feature testing and multi-version compatibility. Available commands: check, test, build, clippy. Recommend using 'check' for fast validation. Example: cargo-hack with "feature_powerset": true, "depth": 3, "keep_going": true
+  - **Inputs:**
+      - <code>clean_per_run</code> : boolean<br />
+      - <code>clean_per_version</code> : boolean<br />
+      - <code>command</code> : string<br />
+      - <code>depth</code> : integer<br />
+      - <code>each_feature</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>exclude_all_features</code> : boolean<br />
+      - <code>exclude_features</code> : string [ ]<br />
+      - <code>exclude_no_default_features</code> : boolean<br />
+      - <code>feature_powerset</code> : boolean<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>group_features</code> : string [ ]<br />
+      - <code>ignore_private</code> : boolean<br />
+      - <code>ignore_unknown_features</code> : boolean<br />
+      - <code>include_features</code> : string [ ]<br />
+      - <code>keep_going</code> : boolean<br />
+      - <code>locked</code> : boolean<br />
+      - <code>log_group</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>mutually_exclusive_features</code> : string [ ]<br />
+      - <code>no_dev_deps</code> : boolean<br />
+      - <code>no_manifest_path</code> : boolean<br />
+      - <code>no_private</code> : boolean<br />
+      - <code>optional_deps</code> : string [ ]<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>partition</code> : string<br />
+      - <code>print_command_list</code> : boolean<br />
+      - <code>remove_dev_deps</code> : boolean<br />
+      - <code>rust_version</code> : boolean<br />
+      - <code>target</code> : string [ ]<br />
+      - <code>version_range</code> : string<br />
+      - <code>version_step</code> : integer<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-hack-install**
+  - Installs cargo-hack tool for feature testing and continuous integration
+
+- **cargo-info**
+  - Display information about a package. Information includes package description, list of available features, etc. Equivalent to 'cargo info <SPEC>'.
+  - **Inputs:**
+      - <code>config</code> : string<br />
+      - <code>index</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string<br />
+      - <code>registry</code> : string<br />
+      - <code>version</code> : string<br />
+
+- **cargo-insta-update-snapshots**
+  - Runs `cargo test` with the `INSTA_UPDATE` environment variable to update insta snapshot files.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>all_targets</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>force</code> : boolean<br />
+      - <code>jobs</code> : integer<br />
+      - <code>lib</code> : boolean<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>test</code> : string<br />
+      - <code>tests</code> : boolean<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-list**
+  - Lists installed cargo commands using 'cargo --list'.
+
+- **cargo-machete**
+  - Finds unused dependencies in a fast yet imprecise way. Helps identify dependencies that are declared in Cargo.toml but not actually used in the code.
+  - **Inputs:**
+      - <code>fix</code> : boolean<br />
+      - <code>no_ignore</code> : boolean<br />
+      - <code>paths</code> : string [ ]<br />
+      - <code>skip_target_dir</code> : boolean<br />
+      - <code>with_metadata</code> : boolean<br />
+
+- **cargo-machete-install**
+  - Installs cargo-machete tool for finding unused dependencies
+
+- **cargo-metadata**
+  - Outputs a listing of a project's resolved dependencies and metadata in machine-readable format (JSON).
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>config</code> : string<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>filter_platform</code> : string<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>no_deps</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>toolchain</code> : string<br />
+
+- **cargo-new**
+  - Create a new cargo package at <path>. Creates a new Rust project with the specified name and template.
+  - **Inputs:**
+      - <code>bin</code> : boolean<br />
+      - <code>edition</code> : string<br />
+      - <code>lib</code> : boolean<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>name</code> : string<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>path</code> : string<br />
+      - <code>registry</code> : string<br />
+      - <code>toolchain</code> : string<br />
+      - <code>vcs</code> : string<br />
+
+- **cargo-package**
+  - Assemble the local package into a distributable tarball for publishing or distribution. <br/>    <br/>    Common use cases:<br/>    - Create a .crate file for publishing to crates.io or a private registry<br/>    - Generate distribution packages for deployment or sharing<br/>    - Validate package contents before publishing (using --list)<br/>    - Test packaging process without verification (using --no-verify)<br/>    - Package workspace members selectively or all at once<br/>    <br/>    The generated tarball contains all files needed to build the package, excluding files listed in .gitignore or .cargo_vcs_info.json. <br/>    By default, the package is also built to verify it can be compiled successfully.<br/>    <br/>    Usually run without any additional arguments for single-package projects.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>allow_dirty</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>exclude_lockfile</code> : boolean<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>index</code> : string<br />
+      - <code>jobs</code> : integer<br />
+      - <code>keep_going</code> : boolean<br />
+      - <code>list</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>message_format</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>no_metadata</code> : boolean<br />
+      - <code>no_verify</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>registry</code> : string<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>toolchain</code> : string<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-remove**
+  - Remove dependencies from a Cargo.toml manifest file.
+  - **Inputs:**
+      - <code>dep_id</code> : string [ ]<br />
+      - <code>dependency_type</code> : string<br />
+      - <code>dry_run</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>target</code> : string<br />
+      - <code>target_package</code> : string<br />
+      - <code>toolchain</code> : string<br />
+
+- **cargo-search**
+  - Search packages in the registry. Default registry is crates.io. Equivalent to 'cargo search <code>QUERY</code>'.
+  - **Inputs:**
+      - <code>limit</code> : integer<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>query</code> : string<br />
+      - <code>registry</code> : string<br />
+
+- **cargo-test**
+  - Run `cargo test` to execute Rust tests in the current project.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>all_targets</code> : boolean<br />
+      - <code>bench</code> : string<br />
+      - <code>benches</code> : boolean<br />
+      - <code>bin</code> : string<br />
+      - <code>bins</code> : boolean<br />
+      - <code>doc</code> : boolean<br />
+      - <code>example</code> : string<br />
+      - <code>examples</code> : boolean<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>jobs</code> : integer<br />
+      - <code>lib</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>no_fail_fast</code> : boolean<br />
+      - <code>no_run</code> : boolean<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>profile</code> : string<br />
+      - <code>release</code> : boolean<br />
+      - <code>target</code> : string<br />
+      - <code>target_dir</code> : string<br />
+      - <code>test</code> : string<br />
+      - <code>test_args</code> : string [ ]<br />
+      - <code>testname</code> : string<br />
+      - <code>tests</code> : boolean<br />
+      - <code>toolchain</code> : string<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-tree**
+  - Display a tree visualization of a dependency graph. Useful for understanding dependency relationships, finding duplicate dependencies, and debugging dependency resolution issues.
+  - **Inputs:**
+      - <code>all_features</code> : boolean<br />
+      - <code>depth</code> : integer<br />
+      - <code>duplicates</code> : boolean<br />
+      - <code>edges</code> : string [ ]<br />
+      - <code>exclude</code> : string [ ]<br />
+      - <code>features</code> : string [ ]<br />
+      - <code>format</code> : string<br />
+      - <code>invert</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>no_dedupe</code> : boolean<br />
+      - <code>no_default_features</code> : boolean<br />
+      - <code>package</code> : string [ ]<br />
+      - <code>prefix</code> : string<br />
+      - <code>prune</code> : string [ ]<br />
+      - <code>target</code> : string<br />
+      - <code>toolchain</code> : string<br />
+      - <code>workspace</code> : boolean<br />
+
+- **cargo-update**
+  - Update dependencies as recorded in the local lock file. Updates the dependencies in Cargo.lock to their latest compatible versions.
+  - **Inputs:**
+      - <code>breaking</code> : boolean<br />
+      - <code>config</code> : string<br />
+      - <code>dry_run</code> : boolean<br />
+      - <code>ignore_rust_version</code> : boolean<br />
+      - <code>lockfile_path</code> : string<br />
+      - <code>locking_mode</code> : string<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>output_verbosity</code> : string<br />
+      - <code>precise</code> : string<br />
+      - <code>recursive</code> : boolean<br />
+      - <code>spec</code> : string [ ]<br />
+      - <code>toolchain</code> : string<br />
+      - <code>unstable_flags</code> : string [ ]<br />
+      - <code>workspace</code> : boolean<br />
+
+- **rustc-explain**
+  - Provide a detailed explanation of a Rust compiler error code. This tool allows AI agents to request more information about compilation errors by providing the error code (e.g., E0001, E0308, etc.). Very useful for understanding and resolving Rust compilation errors.
+  - **Inputs:**
+      - <code>error_code</code> : string<br />
+      - <code>toolchain</code> : string<br />
+
+- **rustup-show**
+  - Show the active and installed toolchains or profiles. Shows the name of the active toolchain and the version of rustc. If the active toolchain has installed support for additional compilation targets, then they are listed as well.
+  - **Inputs:**
+      - <code>verbose</code> : boolean<br />
+
+- **rustup-toolchain-add**
+  - Install or update the given toolchains, or by default the active toolchain. Toolchain name can be 'stable', 'nightly', or a specific version like '1.8.0'.
+  - **Inputs:**
+      - <code>allow_downgrade</code> : boolean<br />
+      - <code>components</code> : string [ ]<br />
+      - <code>force</code> : boolean<br />
+      - <code>force_non_host</code> : boolean<br />
+      - <code>no_self_update</code> : boolean<br />
+      - <code>profile</code> : string<br />
+      - <code>targets</code> : string [ ]<br />
+      - <code>toolchain</code> : string<br />
+
+- **rustup-update**
+  - Update Rust toolchains and rustup. With no toolchain specified, updates each of the installed toolchains from the official release channels, then updates rustup itself. If given a toolchain argument then updates that toolchain.
+  - **Inputs:**
+      - <code>force</code> : boolean<br />
+      - <code>force_non_host</code> : boolean<br />
+      - <code>no_self_update</code> : boolean<br />
+      - <code>toolchain</code> : string<br />
+
+- **workspace-info**
+  - Get information about crates in the current workspace, including package names, target types, manifest paths, descriptions, features, and optionally dependencies. This is a cut down version of cargo metadata with the goal of saving tokens.
+  - **Inputs:**
+      - <code>include_dependencies</code> : boolean<br />
+      - <code>manifest_path</code> : string<br />
+      - <code>toolchain</code> : string<br />

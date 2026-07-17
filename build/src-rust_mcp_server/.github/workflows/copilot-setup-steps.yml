@@ -1,0 +1,43 @@
+name: Copilot Setup Steps
+
+on:
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: write
+
+jobs:
+  copilot-setup-steps:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: write
+    environment: copilot
+    
+    steps:
+    - name: Install nightly rustfmt
+      run: rustup component add --toolchain nightly rustfmt
+      
+    - name: Cache Cargo dependencies
+      uses: actions/cache@v6
+      with:
+        path: |
+          ~/.cargo/registry
+          ~/.cargo/git
+        key: copilot-cargo
+
+    - name: Install cargo-quickinstall
+      run: cargo install cargo-quickinstall
+    
+    - name: Install Rust MCP Server
+      run: cargo quickinstall rust-mcp-server
+      
+    - name: Install cargo-machete
+      run: cargo quickinstall cargo-machete
+      
+    - name: Install cargo-deny
+      run: cargo quickinstall cargo-deny
+
+    - name: Install cargo-hack
+      run: cargo quickinstall cargo-hack

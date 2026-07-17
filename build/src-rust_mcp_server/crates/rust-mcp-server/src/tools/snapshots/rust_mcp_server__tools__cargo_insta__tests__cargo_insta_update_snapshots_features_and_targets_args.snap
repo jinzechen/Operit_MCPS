@@ -1,0 +1,14 @@
+---
+source: src/tools/cargo_insta.rs
+expression: args
+---
+[
+    "test",
+    "--lib",
+    "--features",
+    "serde,async",
+    "--no-default-features",
+    "--jobs",
+    "4",
+    "--quiet",
+]

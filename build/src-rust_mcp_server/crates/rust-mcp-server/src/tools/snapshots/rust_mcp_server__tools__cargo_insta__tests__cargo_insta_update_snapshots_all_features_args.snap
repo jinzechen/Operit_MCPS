@@ -1,0 +1,9 @@
+---
+source: src/tools/cargo_insta.rs
+expression: args
+---
+[
+    "test",
+    "--all-features",
+    "--quiet",
+]
