@@ -38,7 +38,7 @@ jobs:
           sed "s/__BIN__/${{ matrix.plugin.bin }}/g; s/__NAME__/${{ matrix.plugin.name }}/g" "$T" > dist/index.js
           # rust_mcp_filesystem needs --enable-roots
           if [ "${{ matrix.plugin.name }}" = "rust_mcp_filesystem" ]; then
-            sed -i 's|spawn(BIN_PATH, \[\],|spawn(BIN_PATH, ["--allowed-directories", "/"],|' dist/index.js
+            sed -i 's|spawn(BIN_PATH, \[\],|spawn(BIN_PATH, ["/"],|' dist/index.js
           fi
           echo "{\"name\":\"${{ matrix.plugin.name }}\",\"version\":\"1.0.0\",\"main\":\"index.js\",\"dependencies\":{}}" > dist/package.json
           zip -j dist/${{ matrix.plugin.name }}.zip dist/${{ matrix.plugin.bin }} dist/index.js dist/package.json
